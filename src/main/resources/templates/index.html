@@ -1001,36 +1001,19 @@
 	            </div>
 	        </div>
 	        <br>
-			
-			
-			
-			
-			
-			
-			
-			
-			
+				
 	 </section>
 	
     <h1 th:text="${message}"></h1>
 	<h2>Tutor List:</h2>
-	<ul>
-	    <li th:each="tutor : ${user}">
-	        <span th:text="${tutor.fullNames}"></span> - <span th:text="${tutor.ratings}"></span> stars
-	    </li>
-	</ul>
+	<div th:each="tutor : ${user}">
+	    <div class="tutor-info">
+	        <span th:text="${tutor.fullNames}"></span> - 
+	        <span th:text="${tutor.ratings}"></span> stars
+	    </div>
+	</div>
 
 
-    <h2>Add New Tutor</h2>
-    <form action="/addTutor" method="post">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-
-        <label for="rating">Rating (1-5):</label>
-        <input type="number" id="rating" name="rating" min="1" max="5" required>
-
-        <button type="submit">Add Tutor</button>
-    </form>
 </body>
 </html>
 
