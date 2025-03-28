@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutor List</title>
+</head>
+<body>
+    <h1 th:text="${message}"></h1>
+
+
+    <h2>Add New Tutor</h2>
+    <form action="/addTutor" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="rating">Rating (1-5):</label>
+        <input type="number" id="rating" name="rating" min="1" max="5" required>
+
+        <button type="submit">Add Tutor</button>
+    </form>
+</body>
+</html>
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+</head>
+<body>
+    <h1>Hello, World!</h1>
+    <p>Welcome to the Thymeleaf example page.</p>
+</body>
+</html>-->
+

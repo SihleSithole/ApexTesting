@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,6 +37,7 @@ import com.example.demo.model.OnlineClass;
 import com.example.demo.model.PaidBookings;
 import com.example.demo.model.Review;
 import com.example.demo.model.Tutor;
+
 import com.example.demo.repository.BecomeTutorRepository;
 
 import com.example.demo.repository.ReviewRepository;
@@ -96,10 +99,22 @@ public class PgController {
 	 @Autowired
 	 private PaidBookingsService paidService;
 	 
-	 @GetMapping("/")
+	/* @GetMapping("/")
 	 public ModelAndView getAllPages(@RequestParam(value = "page", defaultValue = "1") int currentPage) {
 	     return getOnePage(currentPage);
-	 }
+	 }*/
+	 
+	/* @GetMapping("/")
+	 public String getAllPages(@RequestParam(value = "page", defaultValue = "1") int currentPage) {
+	    return "index";
+	 }*/
+	 
+	    @GetMapping("/")
+	    public String showTutors(Model model) {
+	
+	        model.addAttribute("message", "Welcome to the Tutor List!");
+	        return "index";
+	    }
 	 
 	 @GetMapping("/tutors-{location}")
 	 @ResponseBody
