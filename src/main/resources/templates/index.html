@@ -1021,13 +1021,13 @@
     
                 <!-- Container for tutor profiles -->
                 <div class="tutor-container">
-                    <div th:each="tutor : ${tutors}">
+                    <div th:each="tutor : ${user}">
                         <div class="tutor">
                             <div class="top">
                                 <div class="row">
                                     <div class="profile">
                                         <!-- Display image from base64 encoding -->
-                                        <img th:src="'data:image/png;base64,' + ${tutor.base64Image}" loading="lazy" alt="Member Image">
+                                     <!--   <img th:src="'data:image/png;base64,' + ${tutor.base64Image}" loading="lazy" alt="Member Image"> -->
                                     </div>
                                     <div class="details">
                                         <p>
