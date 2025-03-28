@@ -112,14 +112,20 @@ public class PgController {
 	 public ModelAndView getOnePage(int currentPage) {
 	     // Retrieve the paginated list of tutors
 	   //  Page<Tutor> page = tutorService.findPage(currentPage);
-		 Page<TutorProjection> page = tutorService.findPage(currentPage);
+		 
+		 List<Tutor> listTutors = tutorService.getAllTutors();
+		 
+		 System.out.println("outtt");
+		 Page<Tutor> page = tutorService.findPage(listTutors,currentPage,10);
+		 System.out.println("here");
 
 	     // Get the total number of pages and total items
 	     long totalPages = page.getTotalPages();
 	     long totalItems = page.getTotalElements();
-	     List<TutorProjection> countries = page.getContent();
-
-
+	     List<Tutor> countries = page.getContent();
+	     
+	     System.out.println("sila");
+	     
 	     // Create a ModelAndView object
 	     ModelAndView modelAndView = new ModelAndView();
 
@@ -128,9 +134,13 @@ public class PgController {
 	     modelAndView.addObject("totalPages", totalPages);
 	     modelAndView.addObject("totalItems", totalItems);
 	     modelAndView.addObject("countries", countries);
+	     
+	     System.out.println("haiboo");
 
 	 
 	     modelAndView.setViewName("test.jsp"); 
+	     
+	     System.out.println("senda phela");
 
 	     // Return the ModelAndView object
 	     return modelAndView;

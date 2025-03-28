@@ -15,12 +15,29 @@ import com.example.demo.Projection.TutorProjection;
 import com.example.demo.model.Tutor;
 import com.example.demo.repository.TutorRepository;
 
+import jakarta.annotation.PostConstruct;
+
 
 @Service
 public class TutorService {
 	
 	@Autowired
 	private TutorRepository repo;
+	
+	private List<Tutor> tutors;
+	
+    @PostConstruct
+    public void init() {
+        // Load data from the database when the application starts
+        tutors = repo.findAll();  // Or your custom query
+        
+        System.out.println("Tutor data preloaded at startup!");
+        
+    }
+
+    public List<Tutor> getAllTutors() {
+        return tutors;
+    }
 	
 	public List<Tutor> listAll(){
 		
@@ -106,10 +123,25 @@ public class TutorService {
 	    
 	} */
 	
-	@Cacheable("tutors")
+/*	@Cacheable("tutors")
 	public Page<TutorProjection> findPage(int pageNumber) {
 	    Pageable pageable = PageRequest.of(pageNumber - 1, 10, Sort.by(Sort.Order.desc("ratings")));
 	    return repo.findAllProjectedBy(pageable);
+	}*/
+	
+	public Page<Tutor> findPage(List<Tutor> tutorProjections, int pageNumber, int pageSize) {
+	    // Calculate the start index for the pagination
+	    int start = (pageNumber - 1) * pageSize;
+	    int end = Math.min((start + pageSize), tutorProjections.size());
+
+	    // Create a sublist to return the paginated results
+	    List<Tutor> pagedList = tutorProjections.subList(start, end);
+
+	    // Create a Pageable object based on the pageNumber and pageSize
+	    Pageable pageable = PageRequest.of(pageNumber - 1, pageSize);
+
+	    // Create and return a Page object
+	    return new PageImpl<>(pagedList, pageable, tutorProjections.size());
 	}
 	
 	/*TUTORS BY LOCATION*/

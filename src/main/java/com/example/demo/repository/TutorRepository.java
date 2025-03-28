@@ -25,5 +25,5 @@ public interface TutorRepository extends JpaRepository<Tutor, String>{
     Page<Tutor> findTutorsBySubjects(@Param("subject") String subject, Pageable pageable);
     
     Page<TutorProjection> findAllProjectedBy(Pageable pageable);
-		
+    		
 }

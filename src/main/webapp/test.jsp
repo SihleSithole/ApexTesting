@@ -1,7 +1,7 @@
 
 <%@ page import="java.sql.*, javax.sql.*, java.util.ArrayList, java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.example.demo.Projection.TutorProjection" %>
+<%@ page import="com.example.demo.model.Tutor" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Base64" %>
 <html lang="en"> <!--1024 834 768-->  
@@ -1010,7 +1010,7 @@
         <!--SEARCH ENGINE-->
 
         <%
-        List<TutorProjection> tutors = (List<TutorProjection>) request.getAttribute("countries");
+        List<Tutor> tutors = (List<Tutor>) request.getAttribute("countries");
 							
 	
         if (tutors != null && !tutors.isEmpty()) {
@@ -1032,7 +1032,7 @@
             <!-- Container for tutor profiles -->
             <div class="tutor-container">
                 <% 
-                    for (TutorProjection tutor : tutors) {
+                    for (Tutor tutor : tutors) {
                         String email = tutor.getEmail();
                         String name = tutor.getFullNames();
                         String availability = tutor.getAvailability();
