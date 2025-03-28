@@ -112,53 +112,51 @@ public class PgController {
 	    @GetMapping("/")
 	    public String showTutors(Model model) {
 	
-	        model.addAttribute("message", "Welcome to the Tutor List!");
-	        return "index";
+	      /*  model.addAttribute("message", "Welcome to the Tutor List!");
+	        return "index";*/
+	    	
+	    	return getOnePage(model);
 	    }
 	 
-	 @GetMapping("/tutors-{location}")
+	/* @GetMapping("/tutors-{location}")
 	 @ResponseBody
 	 public ModelAndView tutorsList(@PathVariable int location) {
 		 
 		 return getOnePage(location);
-	 }
+	 }*/
 
 	 
-	 public ModelAndView getOnePage(int currentPage) {
+	 public String getOnePage(Model model) {
 	     // Retrieve the paginated list of tutors
 	   //  Page<Tutor> page = tutorService.findPage(currentPage);
-		 
+		
 		 List<Tutor> listTutors = tutorService.getAllTutors();
 		 
 		 System.out.println("outtt");
-		 Page<Tutor> page = tutorService.findPage(listTutors,currentPage,10);
+	/*	 Page<Tutor> page = tutorService.findPage(listTutors,currentPage,10);
 		 System.out.println("here");
 
 	     // Get the total number of pages and total items
 	     long totalPages = page.getTotalPages();
-	     long totalItems = page.getTotalElements();
-	     List<Tutor> countries = page.getContent();
+	     long totalItems = page.getTotalElements();*/
+	   //  List<Tutor> countries = page.getContent(); 
 	     
 	     System.out.println("sila");
 	     
-	     // Create a ModelAndView object
-	     ModelAndView modelAndView = new ModelAndView();
-
+	     
+	     
+	     model.addAttribute("user", listTutors);
+	     
 	     // Add attributes to the model
-	     modelAndView.addObject("currentPage", currentPage);
+	 /*    modelAndView.addObject("currentPage", currentPage);
 	     modelAndView.addObject("totalPages", totalPages);
 	     modelAndView.addObject("totalItems", totalItems);
-	     modelAndView.addObject("countries", countries);
+	     modelAndView.addObject("countries", countries);*/
 	     
 	     System.out.println("haiboo");
 
-	 
-	     modelAndView.setViewName("test.jsp"); 
-	     
-	     System.out.println("senda phela");
-
 	     // Return the ModelAndView object
-	     return modelAndView;
+	     return "index";
 	 }
 
 	 
@@ -2622,10 +2620,10 @@ public class PgController {
 							    }
 							 
 							 
-							 @PostMapping("/subscribe")
+						/*	 @PostMapping("/subscribe")
 								public ModelAndView subscribeMethod(@RequestParam("email") String email) {
 								 
-								   /*Send email to client*/
+								 
 									senderService.sendSimpleEmail(email, " Welcome to Apex Academic Centre!" ,
 									"Dear,\n"
 									+ "\n"
@@ -2656,7 +2654,6 @@ public class PgController {
 									+ "Apex Academic Centre Team");
 									
 									
-									/*Send Email To Apex*/
 									senderService.sendSimpleEmail("marketing@apexacademiccentre.co.za", "" ,
 									"Dear Apex Academic Centre \n"
 									+ "\n"
@@ -2672,7 +2669,7 @@ public class PgController {
 									
 									return getOnePage(1);
 									
-								}
+								}*/
 							 
 							 
 							 @PostMapping("/deleteReview")

@@ -7,6 +7,12 @@
 </head>
 <body>
     <h1 th:text="${message}"></h1>
+	<h2>Tutor List:</h2>
+	<ul>
+	    <li th:each="tutor : ${user}">
+	        <span th:text="${tutor.fullNames}"></span> - <span th:text="${tutor.surname}"></span> stars
+	    </li>
+	</ul>
 
 
     <h2>Add New Tutor</h2>
