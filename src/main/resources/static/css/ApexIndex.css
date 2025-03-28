@@ -1,13 +1,23 @@
-	@-ms-viewport {
-		width: device-width;
-	}
 
-body {
+#footer-footer {
     font-family: 'Montserrat', sans-serif;
-    background-color: #f6fffa;
+    font-size: small;
+    font-weight: bold;
 }
 
-/* Reset some default styles */
+.aboutApex, .links, .footer-heading
+{
+	font-family: 'Montserrat', sans-serif;
+	font-size: small;
+	font-weight: bold;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e7eeff;
+}
+
+
 body, ul, li {
     margin: 0;
     padding: 0;
@@ -21,7 +31,7 @@ body, ul, li {
     justify-content: space-between; 
     background-color: white;
     padding: 10px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Arial', sans-serif;
     position: fixed; /* Fixes the navbar to the top of the viewport */
     top: 0; /* Positions it at the top */
     left: 0; /* Ensures it stretches from the left edge */
@@ -31,20 +41,23 @@ body, ul, li {
 
 /* Logo image */
 .logo {
-    height: 60px;
+    /*height: 60px;*/
     margin-right: 20px;
-    margin-left: 95px;
-    width: 220px;
+    margin-left: 30px;
+   /* width: 220px;*/
+    max-width: 100%;
+    height: auto;
+    
 }
 
 /* Navbar links container */
 .nav-links {
-	margin-left: 8%;
+	margin-left: 4%;
     display: flex;
     align-items: center;
     margin-right: auto; /* Pushes the nav links to the left */
     font-size: 14px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Arial', sans-serif;
     font-weight: bold;
 }
 
@@ -185,7 +198,7 @@ body, ul, li {
 			    }
 	
     .navbar {
-        height: 50px; /* Adjust the height as needed */
+        height: 60px; /* Adjust the height as needed */
     }
 
     .navbar-toggle {
@@ -225,13 +238,18 @@ body, ul, li {
         position: absolute; /* Position it absolutely */
         top: 10px; /* Adjust as needed */
         left: 0; /* Align to the left */
+        width:70%;
     }
     
+    
+    #tutorBtn {
+     display: none;
+}
 
 }
 
 .main-section {
-  padding-top: 70px; /* Adjust this value based on the height of your navbar */
+  padding-top: 80px; /* Adjust this value based on the height of your navbar */
 }
 
 .main-class .tutorImage{
@@ -273,13 +291,33 @@ body, ul, li {
     color: #02A552; /* Change text color on hover */
 }
 
+
+#tutorBtnClass{
+	
+	background-color: #00a550;
+    height: 35px;
+    color: white;
+    width: 150px;
+    border-radius: 10px;
+    border-color: transparent;
+    font-size: 18px;
+    display: block; /* Make sure the button is a block element */
+    margin: 0 auto; /* Center the button */
+}
+
+#tutorBtnClass:hover {
+    background-color: white;
+    color: #02A552; /* Change text color on hover */
+}
+
+
 /*TUTOR DESIGN*/
 
 .main-section {
 	
  	background-color: #f6fffa;
     display: block ;
-  	font-family: 'Montserrat', sans-serif;
+  	font-family: 'Arial', sans-serif;
 
   
 }
@@ -513,6 +551,14 @@ body, ul, li {
 
 @media screen and (max-width:768px){
 	
+	    #tutorBtn {
+     display: none;
+}
+
+         #tutorBtnClass {
+     display: block;
+    }
+	
 		 .hidSubjects{
 					
 			       display: block;
@@ -540,11 +586,7 @@ body, ul, li {
         font-size: 1rem; /* Smaller font size for mobile */
     }
 
-    #tutorBtn {
-        height: 40px; /* Slightly reduce height */
-        font-size: 1rem; /* Smaller font size for mobile */
-    }
-    
+
     .main-class br:nth-of-type(2) {
         display: none; /* Hides the second <br> element */
     }
@@ -755,6 +797,42 @@ body, ul, li {
 					width: 150px;
 					border-radius: 10px;
 				}
+				
+				
+				/*Footer start*/
+				
+				 footer {
+			        background-color: #001549; /* Set footer background color */
+			        color: white; /* Set text color */
+			        position: relative; /* Ensure footer has a stacking context */
+			        z-index: 0; /* Below subscription container */
+			        padding: 150px 20px; /* Adjust padding for height */
+			        margin-top: -150px; /* Negative margin to allow for a full overlap */
+			    }
+				
+				.links {
+				        flex-direction: column; /* Stack columns vertically */
+				    }
+				
+				    .column {
+				        flex: none; /* Prevent columns from shrinking */
+				        width: 100%; /* Each column takes full width */
+				        margin: 10px 0; /* Space between columns */
+				    }
+				
+				    .footer-heading {
+				        font-size: 1.2em; /* Reduce heading font size */
+				    }
+				
+				    .link {
+				        font-size: 0.9em; /* Reduce link font size */
+				    }
+				
+				    .icons {
+				        font-size: 30px; /* Reduce icon size */
+				    }
+    
+				/*Footer end*/
 		  
 	
 }
@@ -763,6 +841,53 @@ body, ul, li {
 /*LANDSCAPE RESPONSIVE*/
 
 @media (min-width:480px) and (max-width:833px){
+	
+	 .navbar {
+        height: 50px; /* Adjust the height as needed */
+       
+    }
+
+    .navbar-toggle {
+		color: #00a550;
+        display: block; /* Show toggle button */
+    }
+
+    .nav-links {
+        margin-top: 5%;
+        position: fixed; /* Fix position */
+        top: 0; /* Align to top */
+        right: -300px; /* Start off-screen */
+        height: 100%; /* Full height */
+        width: 250px; /* Width of the nav */
+        background-color: white; /* Background color */
+        flex-direction: column; /* Stack vertically */
+        transition: right 0.3s ease; /* Sliding effect */
+        z-index: 999; /* Ensure it is above other content */
+        
+    }
+
+    .nav-links.show {
+        right: 0; /* Slide in */
+    }
+
+    .search-container {
+        display: none; /* Hide search on small screens */
+    }
+
+    .login-register {
+        width: 100%; /* Full width */
+        margin: 10px 0; /* Add spacing */
+    }
+
+    .logo {
+        margin: 0; /* Remove margins */
+        position: absolute; /* Position it absolutely */
+        top: 10px; /* Adjust as needed */
+        left: 0; /* Align to the left */
+        width:50%;
+        height:50px;
+    }
+    
 	
 			 .hidSubjects{
 					
@@ -787,9 +912,17 @@ body, ul, li {
         font-size: 1rem; /* Smaller font size for mobile */
     }
 
-    #tutorBtn {
+    #tutorBtnss {
         height: 40px; /* Slightly reduce height */
         font-size: 1rem; /* Smaller font size for mobile */
+    }
+    
+        #tutorBtn {
+     display: none;
+}
+
+         #tutorBtnClass {
+     display: block;
     }
     
     .main-class br:nth-of-type(2) {
@@ -1010,6 +1143,54 @@ body, ul, li {
 
 @media (min-width:834px) and (max-width:1023px){
 	
+	 .navbar {
+        height: 60px; /* Adjust the height as needed */
+     
+       
+    }
+
+    .navbar-toggle {
+		color: #00a550;
+        display: block; /* Show toggle button */
+    }
+
+    .nav-links {
+        margin-top: 5%;
+        position: fixed; /* Fix position */
+        top: 0; /* Align to top */
+        right: -300px; /* Start off-screen */
+        height: 100%; /* Full height */
+        width: 250px; /* Width of the nav */
+        background-color: white; /* Background color */
+        flex-direction: column; /* Stack vertically */
+        transition: right 0.3s ease; /* Sliding effect */
+        z-index: 999; /* Ensure it is above other content */
+        
+    }
+
+    .nav-links.show {
+        right: 0; /* Slide in */
+    }
+
+    .search-container {
+        display: none; /* Hide search on small screens */
+    }
+
+    .login-register {
+        width: 100%; /* Full width */
+        margin: 10px 0; /* Add spacing */
+    }
+
+    .logo {
+        margin: 0; /* Remove margins */
+        position: absolute; /* Position it absolutely */
+        top: 10px; /* Adjust as needed */
+        left: 0; /* Align to the left */
+        width:35%;
+        height:60px;
+    }
+    
+	
  
 	.image-wrapper .image1,
 	.image-wrapper .image2 {
@@ -1025,9 +1206,17 @@ body, ul, li {
         font-size: 1rem; /* Smaller font size for mobile */
     }
 
-    #tutorBtn {
+    #tutorBtnss {
         height: 40px; /* Slightly reduce height */
         font-size: 1rem; /* Smaller font size for mobile */
+    }
+    
+        #tutorBtn {
+     display: none;
+}
+
+         #tutorBtnClass {
+     display: block;
     }
     
     .main-class br:nth-of-type(2) {
@@ -1244,9 +1433,68 @@ body, ul, li {
 	
 }
 
+@media (min-width: 1280px)  {
+	
+		#tutorBtnClass{
+		
+    display: none; /* Make sure the button is a block element */
+ 
+}
+
+}
+
 /*Ipad Pro*/
 
 @media (min-width: 1024px) and (max-width:1024px) {
+	
+	 .navbar {
+        height: 75px; /* Adjust the height as needed */
+       
+       
+    }
+
+    .navbar-toggle {
+		color: #00a550;
+        display: block; /* Show toggle button */
+    }
+
+    .nav-links {
+        margin-top: 5%;
+        position: fixed; /* Fix position */
+        top: 0; /* Align to top */
+        right: -300px; /* Start off-screen */
+        height: 100%; /* Full height */
+        width: 250px; /* Width of the nav */
+        background-color: white; /* Background color */
+        flex-direction: column; /* Stack vertically */
+        transition: right 0.3s ease; /* Sliding effect */
+        z-index: 999; /* Ensure it is above other content */
+        
+    }
+
+    .nav-links.show {
+        right: 0; /* Slide in */
+    }
+
+    .search-container {
+        display: none; /* Hide search on small screens */
+    }
+
+    .login-register {
+        width: 100%; /* Full width */
+        margin: 10px 0; /* Add spacing */
+    }
+
+    .logo {
+        margin: 0; /* Remove margins */
+        position: absolute; /* Position it absolutely */
+        top: 10px; /* Adjust as needed */
+        left: 0; /* Align to the left */
+        width:35%;
+        height:65px;
+    }
+    
+	
 	
 	.tutorImage{
 
@@ -1271,10 +1519,19 @@ body, ul, li {
         font-size: 1rem; /* Smaller font size for mobile */
     }
 
-    #tutorBtn {
+    #tutorBtnss {
         height: 40px; /* Slightly reduce height */
         font-size: 1rem; /* Smaller font size for mobile */
     }
+    
+            #tutorBtn {
+     display: none;
+}
+
+         #tutorBtnClass {
+     display: block;
+    }
+    
     
     .main-class br:nth-of-type(2) {
         display: none; /* Hides the second <br> element */
@@ -1493,8 +1750,11 @@ body, ul, li {
 
 @media (min-width: 906px) and (max-width: 1280px){
 	
+	
+	
 	    .navbar {
-        height: 50px; /* Adjust the height as needed */
+        height: 70px; /* Adjust the height as needed */
+     
     }
 
     .navbar-toggle {
@@ -1553,6 +1813,9 @@ body, ul, li {
         margin-right: auto; /* Center the section */
     }
     
+     #tutorBtn {
+     display: none;
+    }
 
 }
 
@@ -1564,7 +1827,7 @@ body, ul, li {
     justify-content: space-between; 
     background-color: white;
     padding: 10px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Arial', sans-serif;
     position: fixed; /* Fixes the navbar to the top of the viewport */
     top: 0; /* Positions it at the top */
     left: 0; /* Ensures it stretches from the left edge */
@@ -1574,11 +1837,15 @@ body, ul, li {
 
 /* Logo image */
 .logo {
-    height: 80px;
+    /*height: 60px;*/
     margin-right: 20px;
-    margin-left: 7%;
-    width: 250px;
+    margin-left: 30px;
+   /* width: 220px;*/
+    max-width: 100%;
+    height: auto;
+    
 }
+
 
 /* Navbar links container */
 .nav-links {
@@ -1587,7 +1854,7 @@ body, ul, li {
     align-items: center;
     margin-right: auto; /* Pushes the nav links to the left */
     font-size: 18px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Arial', sans-serif;
 }
 
 /* Navbar links */
@@ -1990,13 +2257,13 @@ body, ul, li {
 }
 
 @media (min-width: 1800px) {
-		.navbar {
+	.navbar {
     display: flex;
     align-items: center;
     justify-content: space-between; 
     background-color: white;
     padding: 10px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Arial', sans-serif;
     position: fixed; /* Fixes the navbar to the top of the viewport */
     top: 0; /* Positions it at the top */
     left: 0; /* Ensures it stretches from the left edge */
@@ -2006,11 +2273,15 @@ body, ul, li {
 
 /* Logo image */
 .logo {
-    height: 80px;
+    /*height: 60px;*/
     margin-right: 20px;
     margin-left: 9%;
-    width: 250px;
+   /* width: 220px;*/
+    max-width: 100%;
+    height: auto;
+    
 }
+
 
 /* Navbar links container */
 .nav-links {
@@ -2019,7 +2290,7 @@ body, ul, li {
     align-items: center;
     margin-right: auto; /* Pushes the nav links to the left */
     font-size: 18px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Arial', sans-serif;
 }
 
 /* Navbar links */
@@ -2505,6 +2776,7 @@ body, ul, li {
 
 .tutor-wrapper {
   position: relative;
+  margin-bottom: 200px;
 }
 
 .image-wrapper {
