@@ -143,9 +143,8 @@ public class PgController {
 	     
 	     System.out.println("sila");
 	     
-	     
-	     
 	     model.addAttribute("user", listTutors);
+	     model.addAttribute("tutors", listTutors);
 	     
 	     // Add attributes to the model
 	 /*    modelAndView.addObject("currentPage", currentPage);
