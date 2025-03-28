@@ -1030,10 +1030,10 @@
 			                <span class="static-text" id="tutorNameDisplay"><strong th:text="${tutor.fullNames}"></strong></span><br><br>
 			                <span class="static-text">Country :</span> <span class="detail-info" th:text="${tutor.country}"></span><br>
 							<span th:if="${tutor.country == 'South Africa'}">
-							    <span class="static-text">Province :</span> <span class="detail-info" th:text="${tutor.address}"></span>
+							    <span class="static-text">Province :</span> <span class="detail-info" th:text="${tutor.address}"></span><br>
 							</span>
 							<span th:unless="${tutor.country == 'South Africa'}">
-							    <span class="static-text">International</span> 
+							    <span class="static-text">International</span><br>
 							</span>
 			                <span class="static-text">Area :</span> <span class="detail-info"th:text="${tutor.area}"></span><br>
 			                <span class="static-text">Curriculum :</span> <span class="detail-info" th:text="${tutor.syllabus}"></span><br>
