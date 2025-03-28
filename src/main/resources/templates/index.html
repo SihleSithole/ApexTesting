@@ -1004,92 +1004,102 @@
         <br>
         <!--SEARCH ENGINE-->
 
-        <div class="tutor-wrapper">
-            <!-- Container for images -->
-            <div class="image-wrapper">
-                <img src="apex_child.jpeg" loading="lazy" alt="Image 1" class="image image1">
-                <img src="In-person Tutor & Student Apex Academic Centre.jpg" loading="lazy" alt="Image 2" class="image image2">  
-            </div>
-            <div class="whatsapp-wrapper">
-                <a href="https://wa.me/27840488881?text=Hi%20*Apex%20Academic%20Centre*!%20I%20need%20more%20info%20about%20Apex%20Academic%20Centre%20https://www.apexacademiccentre.co.za" target="_blank" class="whatsapp-icon">
-                    <i class="fab fa-whatsapp" style="font-size: 40px; color: #fff; "></i> 
-                </a>
-            </div>
+        <div th:if="${tutors != null && !tutors.isEmpty()}">
+
+            <!-- Container for scrolling tutors -->
+            <div class="tutor-wrapper">
+                <!-- Container for images -->
+                <div class="image-wrapper">
+                    <img src="apex_child.jpeg" loading="lazy" alt="Image 1" class="image image1">
+                    <img src="In-person Tutor & Student Apex Academic Centre.jpg" loading="lazy" alt="Image 2" class="image image2">  
+                </div>
+                <div class="whatsapp-wrapper">
+                    <a href="https://wa.me/27840488881?text=Hi%20*Apex%20Academic%20Centre*!%20I%20need%20more%20info%20about%20Apex%20Academic%20Centre%20https://www.apexacademiccentre.co.za" target="_blank" class="whatsapp-icon">
+                        <i class="fab fa-whatsapp" style="font-size: 40px; color: #fff; "></i> 
+                    </a>
+                </div>
     
-            <!-- Container for tutor profiles -->
-            <div class="tutor-container">
-                <div th:each="tutor : ${user}">
-                    <div class="tutor">
-                        <div class="top">
-                            <div class="row">
-                                <div class="profile">
-                                 <!--   <img th:src="@{'data:image/png;base64,' + ${tutor.image | base64}}" loading="lazy" alt="Member Image"> -->
-                                </div>
-                                <div class="details">
-                                    <p>
-                                        <span class="static-text" id="tutorNameDisplay"><strong th:text="${tutor.fullNames}"></strong></span><br><br>
-                                        <span class="static-text">Country :</span> <span class="detail-info" th:text="${tutor.country}"></span><br>
-    
-                                        <span th:if="${tutor.country == 'South Africa'}">
-                                            <span class="static-text">Province :</span> <span class="detail-info" th:text="${tutor.address}"></span><br>
-                                        </span>
-    
-                                        <span th:if="${tutor.country != 'South Africa'}">
-                                            <span class="static-text">International</span><br>
-                                        </span>
-    
-                                        <span class="static-text">Area :</span> <span class="detail-info" th:text="${tutor.area}"></span><br>
-                                        <span class="static-text">Curriculum :</span> <span class="detail-info" th:text="${tutor.syllabus}"></span><br>
-                                        <span class="static-text">Tutoring Option :</span> <span class="detail-info" th:text="${tutor.availability}"></span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="feedback">
-                                <div class="ratings">
-                                    <i class="fas fa-star" id="rate-icon"></i>
-                                    <span id="rate" th:text="${tutor.ratings + ' Ratings'}"></span>
-                                </div>
-                                <div class="feedback-item">
-                                    <i class="fas fa-check-circle" id="back-icon"></i>
-                                    <span class="back">Background Checked</span>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <!-- Middle Div -->
-                        <div class="last">
-                            <div class="grades">
-                                <h4>Grades</h4><br>
-                                <div class="inside">
-                                    <span th:each="grade : ${tutor.grades.split(',')}" th:text="${grade}"></span>
-                                </div>
-                            </div>
-                            <div class="user-details">
-                                <div class="about" th:text="${tutor.hoursTutored}"></div>
-                                <br>
-                                <div class="subjects">
-                                    <span class="hidSubjects">Subjects</span>
-                                    <span th:each="subject : ${tutor.subjects.split(',')}" th:text="${subject}"></span><br><br>
-                                </div>
-                            </div>
-                            <div class="book-view">
-                                <form action="/view-profile" method="get" id="profileForm1">
-                                    <input type="hidden" id="encryptedEmail1" name="email" value="" /> <!-- Encrypted email hidden field -->
-                                    <div class="repoStyle">
-                                        <button type="submit" class="view_pp" th:onclick="'encryptEmail(event, ' + ${tutor.email} + ', ' + 'encryptedEmail1')">VIEW PROFILE</button>
-                                        <button type="button" th:onclick="'openOpenopen(' + ${tutor.fullNames} + ', ' + ${tutor.email} + ', ' + ${tutor.syllabus} + ', ' + ${tutor.grades} + ', ' + ${tutor.subjects})'" class="bk_tutor">BOOK TUTOR</button>
+                <!-- Container for tutor profiles -->
+                <div class="tutor-container">
+                    <div th:each="tutor : ${tutors}">
+                        <div class="tutor">
+                            <div class="top">
+                                <div class="row">
+                                    <div class="profile">
+                                        <!-- Display image from base64 encoding -->
+                                        <img th:src="'data:image/png;base64,' + ${tutor.base64Image}" loading="lazy" alt="Member Image">
                                     </div>
-                                </form>
-                                <br>
+                                    <div class="details">
+                                        <p>
+                                            <span class="static-text" id="tutorNameDisplay"><strong th:text="${tutor.fullNames}"></strong></span><br><br>
+                                            <span class="static-text">Country :</span> <span class="detail-info" th:text="${tutor.country}"></span><br>
+                                            <span th:if="${tutor.country == 'South Africa'}">
+                                                <span class="static-text">Province :</span> <span class="detail-info" th:text="${tutor.address}"></span><br>
+                                            </span>
+                                            <span th:if="${tutor.country != 'South Africa'}">
+                                                <span class="static-text">International</span><br>
+                                            </span>
+                                            <span class="static-text">Area :</span> <span class="detail-info" th:text="${tutor.area}"></span><br>
+                                            <span class="static-text">Curriculum :</span> <span class="detail-info" th:text="${tutor.syllabus}"></span><br>
+                                            <span class="static-text">Tutoring Option :</span> <span class="detail-info" th:text="${tutor.availability}"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="feedback">
+                                    <div class="ratings">
+                                        <i class="fas fa-star" id="rate-icon"></i>
+                                        <span id="rate" th:text="${tutor.ratings + ' Ratings'}"></span>
+                                    </div>
+                                    <div class="feedback-item">
+                                        <i class="fas fa-check-circle" id="back-icon"></i>
+                                        <span class="back">Background Checked</span>
+                                    </div>
+                                </div>
                             </div>
+    
+                            <!-- Middle Div -->
+                            <div class="last">
+                                <div class="grades">
+                                    <h4>Grades</h4><br>
+                                    <div class="inside">
+                                        <span th:each="grade : ${tutor.grades.split(',')}" th:text="${grade}"></span>
+                                    </div>
+                                </div>
+                                <div class="user-details">
+                                    <div class="about" th:text="${tutor.hoursTutored}"></div>
+                                    <br>
+                                    <div class="subjects">
+                                        <span class="hidSubjects">Subjects</span>
+                                        <span th:each="subject : ${tutor.subjects.split(',')}" th:text="${subject}"></span><br><br>
+                                    </div>
+                                </div>
+                                <div class="book-view">
+                                    <form action="/view-profile" method="get" id="profileForm1">
+                                        <input type="hidden" id="encryptedEmail1" name="email" value=""/> <!-- Encrypted email hidden field -->
+                                        <div class="repoStyle">
+                                            <button type="submit" class="view_pp" th:onclick="'encryptEmail(event, ' + ${tutor.email} + ', ' + 'encryptedEmail1')">VIEW PROFILE</button>
+                                            <button type="button" th:onclick="'openOpenopen(' + ${tutor.fullNames} + ', ' + ${tutor.email} + ', ' + ${tutor.syllabus} + ', ' + ${tutor.grades} + ', ' + ${tutor.subjects})'" class="bk_tutor">BOOK TUTOR</button>
+                                        </div>
+                                    </form>
+                                    <br>
+                                </div>
+                            </div>
+                            <br><br>
                         </div>
-                        <br><br>
                     </div>
                 </div>
             </div>
         </div>
-								
-      
+    
+        <!-- If no tutors found, show a message -->
+        <div th:if="${tutors == null || tutors.isEmpty()}">
+            <p>No Tutors found.</p>
+        </div>
+
+	
+	
+	
+    
    <!--BOOKING FORM--> 
 	
                    <div class="wrapper" id="modal">
@@ -2010,6 +2020,10 @@
         </div>
     </div>
 </footer>
+
+
+
+
 
 <script>
 
