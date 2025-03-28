@@ -1004,8 +1004,6 @@
 				
 	 </section>
 	
-    <h1 th:text="${message}"></h1>
-	<h2>Tutor List:</h2>
 	<div  class="tutor-wrapper" >
 		<!-- Container for images -->
 		<div class="image-wrapper">
@@ -1016,6 +1014,97 @@
 		      <a href="https://wa.me/27840488881?text=Hi%20*Apex%20Academic%20Centre*!%20I%20need%20more%20info%20about%20Apex%20Academic%20Centre%20https://www.apexacademiccentre.co.za" target="_blank" class="whatsapp-icon">
 		        <i class="fab fa-whatsapp" style="font-size: 40px; color: #fff; "></i> 
 		       </a>
+		</div>
+		
+		<!--Tutor Container Here-->
+		<div class="tutor-container" >
+			
+			<div class="tutor" th:each="tutor : ${user}">
+			    <div class="top">
+			        <div class="row">
+			        <div class="profile">
+						<img src="/images/apex_child.jpeg" loading="lazy" alt="Image 1" class="image image1">
+			        </div>
+			        <div class="details">
+			            <p>
+			                <span class="static-text" id="tutorNameDisplay"><strong th:text="${tutor.fullNames}"></strong></span><br><br>
+			                <span class="static-text">Country :</span> <span class="detail-info" th:text="${tutor.country}"></span><br>
+							<span th:if="${tutor.country == 'South Africa'}">
+							    <span class="static-text">Province :</span> <span class="detail-info" th:text="${tutor.address}"></span>
+							</span>
+							<span th:unless="${tutor.country == 'South Africa'}">
+							    <span class="static-text">International</span> 
+							</span>
+			                <span class="static-text">Area :</span> <span class="detail-info"th:text="${tutor.area}"></span><br>
+			                <span class="static-text">Curriculum :</span> <span class="detail-info" th:text="${tutor.syllabus}"></span><br>
+			                <span class="static-text">Tutoring Option :</span> <span class="detail-info"th:text="${tutor.availability}"></span>
+			            </p>
+			        </div>
+			    </div>
+			        <div class="feedback">
+			           <div class="feedback-item">
+			               <br>
+			            </div>
+			            <div class="ratings">
+			               <i class="fas fa-star" id="rate-icon"></i>
+			               <span id="rate" th:text="${tutor.ratings}"></span>
+			            </div>
+			            <div class="feedback-item">
+			                <i class="fas fa-check-circle" id="back-icon"></i>
+			                <span class="back">Background Checked</span>
+			            </div>
+			        </div>
+			    </div>
+
+			    <!--Middle Div Start HERE-->
+
+			<!--    <div class="last">
+			        <div class="grades">
+			            <h4>Grades</h4><br>
+			            <div class="inside">
+			                <%
+			                String[] grds = grades.split(",");
+			                for (String grd : grds) {
+			                %>
+			                <p><%= grd %></p>
+			                <% } %>
+			            </div>
+			        </div>
+			        <div class="user-details">
+			            <div class="about">
+			                <%= descTutor %>
+			            </div>
+			            <br>
+			            <div class="subjects">
+			                <span class="hidSubjects">Subjects</span>
+			                <%
+			                    String[] sub = subjects.split(",");
+			                    for (String subject : sub) {
+			                %>
+			                    <p><%= subject %></p>
+			                <% } %>
+			                <br><br>
+			            </div>
+			        </div>
+			        <div class="book-view">
+			            <form action="/view-profile" method="get" id="profileForm1">
+			                <input type="hidden" id="encryptedEmail1" name="email" value=""/> 
+			                <div class="repoStyle">
+			                    <button type="submit" class="view_pp" onclick="encryptEmail(event, '<%= email %>', 'encryptedEmail1')">
+			                        VIEW PROFILE
+			                    </button>
+			                    <button type="button" onclick="openOpenopen('<%= name %>' , '<%= email %>', '<%= syllabus %>', '<%= grades %>', '<%= subjects %>')" class="bk_tutor">BOOK TUTOR</button>
+			                </div>
+			            </form>
+			            <br>
+			        </div>
+			        
+			       </div>-->
+			    <br>
+			    <br>
+			</div>
+			
+			
 		</div>
 		
 		<div th:each="tutor : ${user}">
