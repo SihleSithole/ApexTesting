@@ -90,6 +90,9 @@ public class Tutor {
 	@Column(columnDefinition = "longblob")
 	private byte[] image;
 	
+	@Column(name = "imageBase64")
+	private String imageBase64;
+	
     @Lob
     @Column(columnDefinition = "longblob")
     private byte[] cv;
@@ -354,6 +357,14 @@ public class Tutor {
 		this.createdAt = createdAt;
 	}
 	
+
+    public String getImageBase64() {
+        return imageBase64;
+    }
+
+    public void setImageBase64(String imageBase64) {
+        this.imageBase64 = imageBase64;
+    }
 	
 
 			

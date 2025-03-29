@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,14 @@ public class TutorService {
     public void init() {
         // Load data from the database when the application starts
         tutors = repo.findAll();  // Or your custom query
+        
+        for (Tutor tutor : tutors) {
+            if (tutor.getImage() != null) {
+                // Convert byte[] image to Base64
+                String base64Image = Base64.getEncoder().encodeToString(tutor.getImage());
+                tutor.setImageBase64(base64Image);  // Set the Base64 string in the tutor object
+            }
+        }
         
         System.out.println("Tutor data preloaded at startup!");
         
