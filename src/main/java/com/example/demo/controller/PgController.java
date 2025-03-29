@@ -128,7 +128,7 @@ public class PgController {
 		
 		 List<Tutor> listTutors = tutorService.getAllTutors();
 
-		 Page<Tutor> page = tutorService.findPage(listTutors,1,10);
+		 Page<Tutor> page = tutorService.findPage(listTutors,currentPage,10);
 		 
 	     int totalPages = page.getTotalPages();
 	     long totalItems = page.getTotalElements();
