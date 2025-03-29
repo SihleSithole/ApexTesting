@@ -239,7 +239,7 @@
 		        <!-- Page Number Links -->
 		        <span th:each="i : ${#numbers.sequence(pageStart, pageEnd)}">
 		            <span th:classappend="${i == currentPage ? 'current' : ''}" class="page-number">
-		                <a th:href="@{/tutors-{page}(page=${i})}" th:text="${i}"></a>
+		                <a th:href="@{/tutors-{page}(page=${i})}" th:text="${i}" class="page-number"></a>
 		            </span>
 		        </span>
 
