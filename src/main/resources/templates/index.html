@@ -1079,34 +1079,26 @@
 			                <br><br>
 			            </div>
 			        </div>
-			      <!--  <div class="book-view">
-			            <form action="/view-profile" method="get" id="profileForm1">
-			                <input type="hidden" id="encryptedEmail1" name="email" value=""/> 
-			                <div class="repoStyle">
-			                    <button type="submit" class="view_pp" onclick="encryptEmail(event, '<%= email %>', 'encryptedEmail1')">
-			                        VIEW PROFILE
-			                    </button>
-			                    <button type="button" onclick="openOpenopen('<%= name %>' , '<%= email %>', '<%= syllabus %>', '<%= grades %>', '<%= subjects %>')" class="bk_tutor">BOOK TUTOR</button>
-			                </div>
-			            </form>
-			            <br>
-			        </div>  -->
-			        
+					<!--Buttons-->
+					<div class="book-view">
+					    <form action="/view-profile" method="get" id="profileForm1">
+					        <input type="hidden" id="encryptedEmail1" name="email" th:value="${tutor.email}"/> 
+					        <div class="repoStyle">
+					            <button type="submit" class="view_pp" th:onclick="'encryptEmail(event, \'' + ${tutor.email} + '\', \'encryptedEmail1\')'">
+					                VIEW PROFILE
+					            </button>
+					            <button type="button" th:onclick="'openOpenopen(\'' + ${tutor.name} + '\', \'' + ${tutor.email} + '\', \'' + ${tutor.syllabus} + '\', \'' + ${tutor.grades} + '\', \'' + ${tutor.subjects} + '\')'" class="bk_tutor">
+					                BOOK TUTOR
+					            </button>
+					        </div>
+					    </form>
+					    <br>
+					</div>
 			       </div>
 			    <br>
 			    <br>
 			</div>
-			
-			
 		</div>
-		
-		<div th:each="tutor : ${user}">
-			<div class="tutor-info">
-			    <span th:text="${tutor.fullNames}"></span> - 
-			    <span th:text="${tutor.ratings}"></span> stars
-			</div>
-	    </div>
-
 	</div>
 	
 	</section>
