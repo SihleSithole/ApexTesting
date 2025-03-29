@@ -1,8 +1,9 @@
 package com.example.demo.service;
 
-import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
@@ -31,6 +32,10 @@ public class TutorService {
     public void init() {
         // Load data from the database when the application starts
         tutors = repo.findAll();  // Or your custom query
+        
+        tutors = tutors.stream()
+                .sorted((tutor1, tutor2) -> Integer.compare(tutor2.getRatings(), tutor1.getRatings()))
+                .collect(Collectors.toList());
         
         for (Tutor tutor : tutors) {
             if (tutor.getImage() != null) {
