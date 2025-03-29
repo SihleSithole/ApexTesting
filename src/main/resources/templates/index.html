@@ -1058,19 +1058,16 @@
 
 			    <!--Middle Div Start HERE-->
 
-			<!--    <div class="last">
+		   <div class="last">
 			        <div class="grades">
 			            <h4>Grades</h4><br>
-			            <div class="inside">
-			                <%
-			                String[] grds = grades.split(",");
-			                for (String grd : grds) {
-			                %>
-			                <p><%= grd %></p>
-			                <% } %>
-			            </div>
+						<div class="inside">
+						    <th:block th:each="grd : ${#strings.split(grades, ',')}">
+						        <p th:text="${grd}"></p>
+						    </th:block>
+						</div>
 			        </div>
-			        <div class="user-details">
+			     	<!--    <div class="user-details">
 			            <div class="about">
 			                <%= descTutor %>
 			            </div>
@@ -1097,9 +1094,9 @@
 			                </div>
 			            </form>
 			            <br>
-			        </div>
+			        </div> -->
 			        
-			       </div>-->
+			       </div>
 			    <br>
 			    <br>
 			</div>
