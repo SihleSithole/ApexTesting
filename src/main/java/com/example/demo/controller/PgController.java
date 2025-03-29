@@ -131,12 +131,24 @@ public class PgController {
 		 Page<Tutor> page = tutorService.findPage(listTutors,1,10);
 
 	     // Get the total number of pages and total items
-	    /* long totalPages = page.getTotalPages();
-	     long totalItems = page.getTotalElements();*/
+		 int currentPage = 1;
+		 
+	     int totalPages = page.getTotalPages();
+	     long totalItems = page.getTotalElements();
+	     
+		 long pageStart = Math.max(currentPage - 2, 1); // 
+		 long pageEnd = Math.min(currentPage + 3, totalPages); 
+	     
 	     List<Tutor> countries = page.getContent(); 
 
 	     model.addAttribute("user", countries);
 	     model.addAttribute("tutors", countries);
+	     
+	     model.addAttribute("totalPages", totalPages);
+	     model.addAttribute("totalItems", totalItems);
+	     
+	     model.addAttribute("pageStart", pageStart);
+	     model.addAttribute("pageEnd", pageEnd);
 	     
 	     // Return the ModelAndView object
 	     return "index";

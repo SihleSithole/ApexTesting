@@ -223,6 +223,36 @@
 			    <br>
 			</div>
 		</div>
+		
+		
+		<!-- Pagination -->
+		<div th:if="${totalItems > 0}">
+		    <div class="paginat">
+		        
+		        <!-- Previous Page Button -->
+		        <a th:href="@{/tutors-{page}(page=${currentPage - 1})}" 
+		           th:classappend="${currentPage > 1 ? '' : 'disabled'}" 
+		           class="prev">
+		            <i class="fas fa-arrow-left"></i>
+		        </a>
+
+		        <!-- Page Number Links -->
+		        <span th:each="i : ${#numbers.sequence(pageStart, pageEnd)}">
+		            <span th:classappend="${i == currentPage ? 'current' : ''}" class="page-number">
+		                <a th:href="@{/tutors-{page}(page=${i})}" th:text="${i}"></a>
+		            </span>
+		        </span>
+
+		        <!-- Next Page Button -->
+		        <a th:href="@{/tutors-{page}(page=${currentPage + 1})}" 
+		           th:classappend="${currentPage < totalPages ? '' : 'disabled'}" 
+		           class="next">
+		            <i class="fas fa-arrow-right"></i>
+		        </a>
+
+		    </div>
+		</div>
+
 	</div>
 	
 	</section>
