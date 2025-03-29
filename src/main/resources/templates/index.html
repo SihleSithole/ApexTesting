@@ -1068,8 +1068,10 @@
 						</div>  -->
 						
 						
-						<div class="inside" th:each="name : ${#strings.setSplit(tutor.grades, ',')}">
-						    <p th:text="${name}"></p>
+						<div class="inside">
+							<th:block th:each="grd : ${#strings.setSplit(tutor.grades, ',')}">
+							   <p th:text="${grd}"></p>
+						    </th:block>
 						</div>
 						
 			        </div>
