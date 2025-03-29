@@ -1061,11 +1061,17 @@
 		   <div class="last">
 			        <div class="grades">
 			            <h4>Grades</h4><br>
-						<div class="inside">
+					<!--	<div class="inside">
 						    <th:block th:each="grd : ${#strings.split(tutor.grades, ',')}">
 						        <p th:text="${grd}"></p>
 						    </th:block>
+						</div>  -->
+						
+						
+						<div th:each="name : ${#strings.setSplit(namesStr, ',')}">
+						    <p th:text="${name}"></p>
 						</div>
+						
 			        </div>
 			     	<!--    <div class="user-details">
 			            <div class="about">
