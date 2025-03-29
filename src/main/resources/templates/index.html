@@ -1023,10 +1023,7 @@
 			    <div class="top">
 			        <div class="row">
 			        <div class="profile">
-						
-						<img th:src="@{/images/{filename}(filename=${tutor.fullNames.replace(' ', '') + '.' + (tutor.imageBase64 == 'jpeg' ? 'jpeg' : 'png')})}" alt="Tutor Image" />
-
-
+						<img th:src="@{/images/{filename}(filename=${tutor.fullNames.replace(' ', '') + '.' + (tutor.imageBase64 == 'jpeg' ? 'jpeg' : 'png')})}" alt="Tutor Image"  loading="lazy" />
 			        </div>
 			        <div class="details">
 			            <p>

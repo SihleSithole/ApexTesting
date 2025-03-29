@@ -131,29 +131,17 @@ public class PgController {
 	   //  Page<Tutor> page = tutorService.findPage(currentPage);
 		
 		 List<Tutor> listTutors = tutorService.getAllTutors();
-		 
-		 System.out.println("outtt");
-	/*	 Page<Tutor> page = tutorService.findPage(listTutors,currentPage,10);
-		 System.out.println("here");
+
+		 Page<Tutor> page = tutorService.findPage(listTutors,1,10);
 
 	     // Get the total number of pages and total items
-	     long totalPages = page.getTotalPages();
+	    /* long totalPages = page.getTotalPages();
 	     long totalItems = page.getTotalElements();*/
-	   //  List<Tutor> countries = page.getContent(); 
-	     
-	     System.out.println("sila");
-	     
-	     model.addAttribute("user", listTutors);
-	     model.addAttribute("tutors", listTutors);
-	     
-	     // Add attributes to the model
-	 /*    modelAndView.addObject("currentPage", currentPage);
-	     modelAndView.addObject("totalPages", totalPages);
-	     modelAndView.addObject("totalItems", totalItems);
-	     modelAndView.addObject("countries", countries);*/
-	     
-	     System.out.println("haiboo");
+	     List<Tutor> countries = page.getContent(); 
 
+	     model.addAttribute("user", countries);
+	     model.addAttribute("tutors", countries);
+	     
 	     // Return the ModelAndView object
 	     return "index";
 	 }
