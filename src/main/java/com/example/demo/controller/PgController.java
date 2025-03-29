@@ -116,7 +116,6 @@ public class PgController {
 	 }
 	 
 	 @GetMapping("/tutors-{location}")
-	 @ResponseBody
 	 public String tutorsList(Model model, @PathVariable int location) {
 		 
 		 return getOnePage(model,location);
