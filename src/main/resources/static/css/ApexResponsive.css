@@ -8,7 +8,7 @@
         }
 
         #fProvince{
-            display: none; /* Hide province by default */
+            display: none; 
         }
 
         .popup {
@@ -34,7 +34,7 @@
             }
 
             .popup-content:hover {
-                    transform: scale(1.05); /* Slightly enlarge on hover */
+                    transform: scale(1.05); 
                 }
 
             .close {
@@ -47,13 +47,12 @@
             }
 
             #pack-details {
-                text-align: left; /* Aligns text to the left */
-                /* Optional: You can also add padding or margin for better appearance */
+                text-align: left; 
                 padding: 10px; 
             }
 
             .package-details:hover{
-                transform: scale(1.05); /* Slightly enlarge on hover */
+                transform: scale(1.05); 
             }
 
             #popular{
@@ -87,7 +86,7 @@
             }
 
             .popup-content:hover {
-                    transform: scale(1.05); /* Slightly enlarge on hover */
+                    transform: scale(1.05); 
                     cursor: pointer;
                 }
 
@@ -101,13 +100,12 @@
             }
 
             #pack-details {
-                text-align: left; /* Aligns text to the left */
-                /* Optional: You can also add padding or margin for better appearance */
+                text-align: left; 
                 padding: 10px; 
             }
 
             .package-details:hover{
-                transform: scale(1.05); /* Slightly enlarge on hover */
+                transform: scale(1.05); 
                 cursor: pointer;
             }
 
@@ -120,12 +118,12 @@
             }
 
             .subject-label {
-                max-width: 250x; /* Set max width for the label */
-                overflow: hidden; /* Hide overflow text */
-                text-overflow: ellipsis; /* Show ellipsis for overflow text */
-                white-space: nowrap; /* Prevent text wrapping */
-                display: flex; /* Keep flex for alignment */
-                align-items: center; /* Center checkbox and text */
+                max-width: 250x; 
+                overflow: hidden;
+                text-overflow: ellipsis; 
+                white-space: nowrap; 
+                display: flex; 
+                align-items: center; 
             }
 
             #tutorNameDisplay{
@@ -137,16 +135,13 @@
                   color: #02A552;
             }
 
-            /*SEARCH ENGINE*/
-
-
             .welcome-hero-serch-box {
-            background-color: #fff; /* Light gray background */
-            padding: 10px 15px; /* Adds padding around the content */
-            border-radius: 8px; /* Rounds the corners */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Adds subtle shadow */
-            max-width: 900px; /* Sets a maximum width for the box */
-            margin: 0 auto; /* Centers the box */
+            background-color: #fff; 
+            padding: 10px 15px; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+            max-width: 900px; 
+            margin: 0 auto;
         }
 
         .welcome-hero-form {
@@ -236,10 +231,6 @@
             text-decoration: none; /* Remove underline */
         }
 
-            /*SEARCH ENGINE*/
-
-
-            /*The footer*/
 
             body{
                 
@@ -346,9 +337,7 @@
             width: 100%; 
             box-sizing: border-box;
         }
-        
 
-        /*subscription div*/
         .subscription-container {
             text-align: left; 
             padding: 40px; 
@@ -403,44 +392,9 @@
             margin-bottom: 10px; 
         }
 
-     /*   .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 5px;
-            background-color: #000; 
-            color: #fff;
-            font-size: 14px;
-            margin-top: 10px; 
-            margin-bottom: 0; 
-            width: 100%; 
-        } 
-        
-        /* Footer column styling (for layout inside footer-bottom) */
-        .footer-bottom .footer-column/* {
-          /*  flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-		
-        }*/
-
-        /* Footer link styling */
-       /* .footer-bottom .footer-column a {
-            color: #fff; 
-            text-decoration: none;
-            font-size: 16px;
-            margin-left: 50px;
-        }*/
-
-        /* Footer link hover effect */
         .footer-bottom .footer-column a:hover {
             color: #00a550;
         }
-
-
-
-        /*Media for mobile */
 
         @media screen and (max-width:768px){
 
@@ -515,7 +469,6 @@
             }
         }
 
-        /*LANDSCAPE RESPONSIVE*/
         @media (min-width: 769px) and (max-width: 1024px){
             .tutor-container {
             margin-bottom: 140px;
@@ -619,7 +572,6 @@
 
         }
 
-        /*large desktop*/
    
         @media screen and (min-width:1025px){
             
@@ -717,8 +669,6 @@
         }
         
 
-       /*starts here*/
-
         .subscription-container {
             text-align: left;
             padding: 40px;
@@ -781,15 +731,11 @@
         }
 
 
-/*ends here*/
-
-
         .footer-row.last-content-row {
             border-bottom: none; 
             margin-bottom: 10px; 
         }
         
-        /* Footer column styling (for layout inside footer-bottom) */
         .footer-bottom .footer-column {
             flex: 1;
             display: flex;
@@ -797,7 +743,6 @@
             align-items: center;
         }
 
-        /* Footer link styling */
         .footer-bottom .footer-column a {
             color: #fff; 
             text-decoration: none;
@@ -805,7 +750,6 @@
             margin-left: 10px;
         }
 
-        /* Footer link hover effect */
         .footer-bottom .footer-column a:hover {
             color: #00a550;
         }
@@ -813,7 +757,6 @@
 
     }
 	
-	/* Pagination container */
 	.paginat {
 	    display: flex;
 	    justify-content: center;
@@ -821,7 +764,6 @@
 	    margin: 20px 0;
 	}
 
-	/* Style for Previous/Next buttons */
 	.paginat .prev, .paginat .next {
 	   	background-color: #00a550;
 	    color: #fff;
@@ -841,7 +783,6 @@
 	   background-color: #00a550;
 	}
 
-	/* Page Number Link Styles */
 	.paginat .page-number {
 	    display: inline-block;
 	    background-color: #f0f0f0;
@@ -857,13 +798,11 @@
 	    transition: background-color 0.3s;
 	}
 
-	/* Current Page Number Styling */
 	.paginat .page-number.current {
 	 background-color: #00a550;
 	    color: white;
 	}
 
-	/* Hover Effect for Page Numbers */
 	.paginat .page-number:hover {
 	background-color: #00a550;
 	    color: white;
