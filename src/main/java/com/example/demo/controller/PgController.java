@@ -150,6 +150,8 @@ public class PgController {
 	     model.addAttribute("pageStart", pageStart);
 	     model.addAttribute("pageEnd", pageEnd);
 	     
+	     model.addAttribute("currentPage", currentPage);
+	     
 	     // Return the ModelAndView object
 	     return "index";
 	 }
