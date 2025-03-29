@@ -1061,37 +1061,25 @@
 		   <div class="last">
 			        <div class="grades">
 			            <h4>Grades</h4><br>
-					<!--	<div class="inside">
-						    <th:block th:each="grd : ${#strings.split(tutor.grades, ',')}">
-						        <p th:text="${grd}"></p>
-						    </th:block>
-						</div>  -->
-						
-						
 						<div class="inside">
 							<th:block th:each="grd : ${#strings.setSplit(tutor.grades, ',')}">
 							   <p th:text="${grd}"></p>
 						    </th:block>
 						</div>
-						
 			        </div>
-			     	<!--    <div class="user-details">
-			            <div class="about">
-			                <%= descTutor %>
-			            </div>
+			     	<!--User Detail-->
+				  <div class="user-details">
+			            <div class="about" th:text="${tutor.hoursTutored}"></div>
 			            <br>
 			            <div class="subjects">
 			                <span class="hidSubjects">Subjects</span>
-			                <%
-			                    String[] sub = subjects.split(",");
-			                    for (String subject : sub) {
-			                %>
-			                    <p><%= subject %></p>
-			                <% } %>
+							<th:block th:each="subject : ${#strings.setSplit(tutor.subjects, ',')}">
+							   <p th:text="${subject}"></p>
+							</th:block>
 			                <br><br>
 			            </div>
 			        </div>
-			        <div class="book-view">
+			      <!--  <div class="book-view">
 			            <form action="/view-profile" method="get" id="profileForm1">
 			                <input type="hidden" id="encryptedEmail1" name="email" value=""/> 
 			                <div class="repoStyle">
@@ -1102,7 +1090,7 @@
 			                </div>
 			            </form>
 			            <br>
-			        </div> -->
+			        </div>  -->
 			        
 			       </div>
 			    <br>
