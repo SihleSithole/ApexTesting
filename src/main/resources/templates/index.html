@@ -1023,7 +1023,9 @@
 			    <div class="top">
 			        <div class="row">
 			        <div class="profile">
-						<img src="/images/apex_child.jpeg" loading="lazy" alt="Image 1" class="image image1">
+						
+						<img th:src="@{/images/{filename}(filename=${tutor.fullNames + '.' + (tutor.imageBase64 == 'jpge' ? 'jpeg' : 'png')})}" alt="Tutor Image" />
+
 			        </div>
 			        <div class="details">
 			            <p>

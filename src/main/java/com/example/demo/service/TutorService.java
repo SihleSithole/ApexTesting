@@ -34,9 +34,7 @@ public class TutorService {
         
         for (Tutor tutor : tutors) {
             if (tutor.getImage() != null) {
-                // Convert byte[] image to Base64
-                String base64Image = Base64.getEncoder().encodeToString(tutor.getImage());
-                tutor.setImageBase64(base64Image);  // Set the Base64 string in the tutor object
+                tutor.setImageBase64("png");  // Set the Base64 string in the tutor object
             }
         }
         
