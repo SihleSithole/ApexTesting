@@ -1068,7 +1068,7 @@
 						</div>  -->
 						
 						
-						<div th:each="name : ${#strings.setSplit(namesStr, ',')}">
+						<div th:each="name : ${#strings.setSplit(tutor.grades, ',')}">
 						    <p th:text="${name}"></p>
 						</div>
 						
