@@ -109,29 +109,27 @@ public class PgController {
 	    return "index";
 	 }*/
 	 
-	    @GetMapping("/")
-	    public String showTutors(Model model) {
-	    	return getOnePage(model);
-	    }
+	 @GetMapping("/")
+	 public String showTutors(Model model) {
+	   int currentPage = 1;
+	    return getOnePage(model,currentPage);
+	 }
 	 
-	/* @GetMapping("/tutors-{location}")
+	 @GetMapping("/tutors-{location}")
 	 @ResponseBody
-	 public ModelAndView tutorsList(@PathVariable int location) {
+	 public String tutorsList(Model model, @PathVariable int location) {
 		 
-		 return getOnePage(location);
-	 }*/
+		 return getOnePage(model,location);
+	 }
 
 	 
-	 public String getOnePage(Model model) {
+	 public String getOnePage(Model model, int currentPage) {
 	     // Retrieve the paginated list of tutors
 	   //  Page<Tutor> page = tutorService.findPage(currentPage);
 		
 		 List<Tutor> listTutors = tutorService.getAllTutors();
 
 		 Page<Tutor> page = tutorService.findPage(listTutors,1,10);
-
-	     // Get the total number of pages and total items
-		 int currentPage = 1;
 		 
 	     int totalPages = page.getTotalPages();
 	     long totalItems = page.getTotalElements();
