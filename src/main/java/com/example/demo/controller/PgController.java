@@ -111,10 +111,6 @@ public class PgController {
 	 
 	    @GetMapping("/")
 	    public String showTutors(Model model) {
-	
-	      /*  model.addAttribute("message", "Welcome to the Tutor List!");
-	        return "index";*/
-	    	
 	    	return getOnePage(model);
 	    }
 	 
