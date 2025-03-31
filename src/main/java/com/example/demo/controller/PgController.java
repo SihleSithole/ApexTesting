@@ -2230,22 +2230,22 @@ public class PgController {
 							 /*TUTORS BY LOCATIONS*/
 							 
 							 @GetMapping("/tutors-in-{location}")
-							 public ModelAndView byLocationList(@PathVariable String location,@RequestParam(value = "page", defaultValue = "1") int currentPage) {
+							 public String byLocationList(Model model, @PathVariable String location,@RequestParam(value = "page", defaultValue = "1") int currentPage) {
 							
-								 return byLocation(location, currentPage);
+								 return byLocation(model, location, currentPage);
 							 }
 							 
 						     @GetMapping("/tutor-in-{location}-{currentPage}")
 							 @ResponseBody
-							 public ModelAndView byLocationListNext(@PathVariable String location, @PathVariable int currentPage ) {
+							 public String byLocationListNext(Model model, @PathVariable String location, @PathVariable int currentPage ) {
 								 
 						    	 System.out.println("Page Number : " + currentPage);
-								 return byLocation(location, currentPage);
+								 return byLocation(model, location, currentPage);
 								 
 							 } 
 							 
 							 @GetMapping("/tutors-in-place")
-							 public ModelAndView byLocation(String location, int currentPage) {
+							 public String byLocation(Model model, String location, int currentPage) {
 								 
 								   System.out.println(location);
 							     
@@ -2296,31 +2296,33 @@ public class PgController {
 								     } 
 								       
 							        // Get all tutors
-							       List<Tutor> filteredTutors = tutorService.listAllByLocation(location);
+							        List<Tutor> tutors = tutorService.getAllTutors();
 							         
-							        Page<Tutor> page = tutorService.paginateTutors(filteredTutors, currentPage);
+							        Page<Tutor> page = tutorService.paginateTutorsByLocation(tutors, location, currentPage);
 			
-								     long totalPages = page.getTotalPages();
+							        System.out.println("Tutors found");
+							        
+								     int totalPages = page.getTotalPages();
 								     long totalItems = page.getTotalElements();
-								     List<Tutor> countries = page.getContent();
 								     
-								     System.out.println("Total pages " + totalPages);
-								     System.out.println("Total items " + totalItems);
+									 long pageStart = Math.max(currentPage - 2, 1); // 
+									 long pageEnd = Math.min(currentPage + 3, totalPages); 
+								     
+								     List<Tutor> countries = page.getContent(); 
 
-								     // Create a ModelAndView object
-								     ModelAndView modelAndView = new ModelAndView();
-
-								     // Add attributes to the model
-								     modelAndView.addObject("currentPage", currentPage);
-								     modelAndView.addObject("totalPages", totalPages);
-								     modelAndView.addObject("totalItems", totalItems);
-								     modelAndView.addObject("countries", countries);
-								     modelAndView.addObject("location", location);
-
-								     modelAndView.setViewName("tutorsByLocation.jsp"); 
-
+								     model.addAttribute("user", countries);
+								     model.addAttribute("tutors", countries);
+								     
+								     model.addAttribute("totalPages", totalPages);
+								     model.addAttribute("totalItems", totalItems);
+								     
+								     model.addAttribute("pageStart", pageStart);
+								     model.addAttribute("pageEnd", pageEnd);
+								     
+								     model.addAttribute("currentPage", currentPage);
+								     
 								     // Return the ModelAndView object
-								     return modelAndView;
+								     return "index";
 							        
 							    }
 							 
@@ -2402,11 +2404,11 @@ public class PgController {
 							    	System.out.println("we here");
 						
 							    	List<Tutor> tutors = tutorService.getAllTutors();
+							    	
 							        Page<Tutor> page = tutorService.paginateTutorsBySubject(tutors,subjectv, currentPage);
 									
 							        System.out.println("Tutors found");
 							        
-							
 								     int totalPages = page.getTotalPages();
 								     long totalItems = page.getTotalElements();
 								     

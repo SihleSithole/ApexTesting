@@ -134,8 +134,9 @@
 			    <div class="top">
 			        <div class="row">
 			        <div class="profile">
-						<img th:src="@{/images/{filename}(filename=${tutor.fullNames.replace(' ', '') + '.' + (tutor.imageBase64 == 'jpeg' ? 'jpeg' : 'png')})}" alt="Tutor Image"  loading="lazy" />
-			        </div>
+						<!--<img th:src="@{/images/{filename}(filename=${tutor.fullNames.replace(' ', '') + '.' + (tutor.imageBase64 == 'jpeg' ? 'jpeg' : 'png')})}" alt="Tutor Image"  loading="lazy" /> -->
+						<img src="/images/Chrishner.jpeg" loading="lazy" alt="Image 1" class="image image1">
+					 </div>
 			        <div class="details">
 			            <p>
 			                <span class="static-text" id="tutorNameDisplay"><strong th:text="${tutor.fullNames}"></strong></span><br><br>
