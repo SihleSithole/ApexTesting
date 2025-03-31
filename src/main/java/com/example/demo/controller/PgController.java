@@ -2437,25 +2437,25 @@ public class PgController {
 							 /*TUTORS BY SYLLABUS*/
 							 
 							 @GetMapping("/syllabus-{syllabus}")
-							 public ModelAndView bySyllabusList(@PathVariable String syllabus,@RequestParam(value = "page", defaultValue = "1") int currentPage) {
+							 public String bySyllabusList(Model model, @PathVariable String syllabus,@RequestParam(value = "page", defaultValue = "1") int currentPage) {
 							
-								 return bySyllabus(syllabus, currentPage);
+								 return bySyllabus(model, syllabus, currentPage);
 							 }
 							 
 						     @GetMapping("/tutor-syllabus-{syllabus}-{currentPage}")
 							 @ResponseBody
-							 public ModelAndView bySyllabusPagination(@PathVariable String syllabus, @PathVariable int currentPage ) {
+							 public String bySyllabusPagination(Model model, @PathVariable String syllabus, @PathVariable int currentPage ) {
 								 
 						    	 System.out.println("Subject : " + syllabus);
 						    	 System.out.println("Page Number : " + currentPage);
-						    	 return bySyllabus(syllabus, currentPage);
+						    	 return bySyllabus(model, syllabus, currentPage);
 								 
 							 } 
 							   
 							 
 							 @GetMapping("/bySyllabus")
 							 @ResponseBody
-							 public ModelAndView bySyllabus(String location, int currentPage) {
+							 public String bySyllabus(Model model, String location, int currentPage) {
 							    
 							        String search = "c"+location;
 							      
@@ -2498,7 +2498,7 @@ public class PgController {
 							        }
 
 							        // Get all tutors
-							        List<Tutor> tutors = tutorService.listAll();
+							        List<Tutor> tutors = tutorService.getAllTutors();
 
 							        // Filter the tutors based on the provided attributes
 							        List<Tutor> filteredTutors = tutors.stream()
@@ -2584,35 +2584,37 @@ public class PgController {
 							        		
 							        	}
 							        }
-							        
-
-							        Page<Tutor> page = tutorService.paginateTutors(filteredTutors, currentPage);
-									
-								     long totalPages = page.getTotalPages();
-								     long totalItems = page.getTotalElements();
-								     List<Tutor> syllabusList = page.getContent();
-								     
-								     System.out.println("Tutors By Syllabus");
-								     System.out.println("Total pages " + totalPages);
-								     System.out.println("Total items " + totalItems);
-							        
-								     
-								  // Create a ModelAndView object
-								     ModelAndView modelAndView = new ModelAndView();
-
-								     // Add attributes to the model
-								     modelAndView.addObject("currentPage", currentPage);
-								     modelAndView.addObject("totalPages", totalPages);
-								     modelAndView.addObject("totalItems", totalItems);
-								     modelAndView.addObject("subjects", syllabusList);
-								     modelAndView.addObject("location", location);
+							       
+							        Page<Tutor> page = tutorService.paginateTutorsBySyllabus(filteredTutors, currentPage);
+								
+								   /*  modelAndView.addObject("location", location);
 								     modelAndView.addObject("description" , description);
-								     modelAndView.addObject("title_title" , title);
+								     modelAndView.addObject("title_title" , title); */
+								
 								     
-								     modelAndView.setViewName("tutorsBySyllabus.jsp"); 
+								        System.out.println("Tutors found");
+								        
+									     int totalPages = page.getTotalPages();
+									     long totalItems = page.getTotalElements();
+									     
+										 long pageStart = Math.max(currentPage - 2, 1); // 
+										 long pageEnd = Math.min(currentPage + 3, totalPages); 
+									     
+									     List<Tutor> countries = page.getContent(); 
 
-								     // Return the ModelAndView object
-								     return modelAndView;
+									     model.addAttribute("user", countries);
+									     model.addAttribute("tutors", countries);
+									     
+									     model.addAttribute("totalPages", totalPages);
+									     model.addAttribute("totalItems", totalItems);
+									     
+									     model.addAttribute("pageStart", pageStart);
+									     model.addAttribute("pageEnd", pageEnd);
+									     
+									     model.addAttribute("currentPage", currentPage);
+									     
+									     // Return the ModelAndView object
+									     return "index";
 							        
 
 							    }

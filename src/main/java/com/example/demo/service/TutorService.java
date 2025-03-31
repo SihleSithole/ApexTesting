@@ -157,20 +157,6 @@ public class TutorService {
 	}
 	
 	/*TUTORS BY LOCATION*/
-	
-	 public Page<Tutor> paginateTutors(List<Tutor> tutors, int currentPage) {
-	     int pageSize = 10; 
-	     int start = Math.max((currentPage - 1) * pageSize, 0);
-	     int end = Math.min(start + pageSize, tutors.size());
-	     List<Tutor> pageContent = tutors.subList(start, end);
-
-	     // Return a paginated page of tutors
-	     return new PageImpl<>(pageContent, PageRequest.of(currentPage - 1, pageSize), tutors.size());
-	 }
-	 	 
-	 public List<Tutor> listAllByLocation(String location){
-		    return repo.findTutorsByLocation(location);
-     }
 	 
 	 public Page<Tutor> paginateTutorsByLocation(List<Tutor> tutors, String location, int currentPage) {
 		    int pageSize = 10; // Number of tutors per page
@@ -200,6 +186,22 @@ public class TutorService {
 		    List<Tutor> filteredTutors = tutors.stream()
 		            .filter(tutor -> tutor.getSubjects().contains(subject))
 		            .collect(Collectors.toList());
+
+		    // Calculate pagination indices
+		    int fromIndex = Math.min((currentPage - 1) * pageSize, filteredTutors.size());
+		    int toIndex = Math.min(fromIndex + pageSize, filteredTutors.size());
+
+		    // Sublist to create a page of tutors
+		    List<Tutor> pageOfTutors = filteredTutors.subList(fromIndex, toIndex);
+
+		    // Return a Page object with the sublist
+		    return new PageImpl<>(pageOfTutors, PageRequest.of(currentPage - 1, pageSize), filteredTutors.size());
+		}
+	 
+	 /*TUTORS BY SYLLABUS*/
+
+	 public Page<Tutor> paginateTutorsBySyllabus(List<Tutor> filteredTutors,  int currentPage) {
+		    int pageSize = 10; // Number of tutors per page
 
 		    // Calculate pagination indices
 		    int fromIndex = Math.min((currentPage - 1) * pageSize, filteredTutors.size());
