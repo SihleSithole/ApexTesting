@@ -183,12 +183,32 @@ public class TutorService {
 		    return repo.findTutorsBySubjects(subject);
      }*/
 	 
-	 public Page<Tutor> paginateTutorsBySubject(String subject, int currentPage) {
+	/* public Page<Tutor> paginateTutorsBySubject(String subject, int currentPage) {
 		    int pageSize = 10; // Number of tutors per page
 		    Pageable pageable = PageRequest.of(currentPage - 1, pageSize); // Convert 1-based index to 0-based
 
 		    return repo.findTutorsBySubjects(subject, pageable);
+		} */
+	 
+	 public Page<Tutor> paginateTutorsBySubject(List<Tutor> tutors, String subject, int currentPage) {
+		    int pageSize = 10; // Number of tutors per page
+
+		    // Filter the list by subject
+		    List<Tutor> filteredTutors = tutors.stream()
+		            .filter(tutor -> tutor.getSubjects().contains(subject))
+		            .collect(Collectors.toList());
+
+		    // Calculate pagination indices
+		    int fromIndex = Math.min((currentPage - 1) * pageSize, filteredTutors.size());
+		    int toIndex = Math.min(fromIndex + pageSize, filteredTutors.size());
+
+		    // Sublist to create a page of tutors
+		    List<Tutor> pageOfTutors = filteredTutors.subList(fromIndex, toIndex);
+
+		    // Return a Page object with the sublist
+		    return new PageImpl<>(pageOfTutors, PageRequest.of(currentPage - 1, pageSize), filteredTutors.size());
 		}
+
 
 	
 	

@@ -2329,25 +2329,26 @@ public class PgController {
 							 /*TUTORS BY SUBJECTS*/
 							 
 							 @GetMapping("/{subjectv}-tutors")
-							 public ModelAndView bySubjectsList(@PathVariable String subjectv,@RequestParam(value = "page", defaultValue = "1") int currentPage) {
+							 public String bySubjectsList(Model model, @PathVariable String subjectv,@RequestParam(value = "page", defaultValue = "1") int currentPage) {
 							
-								 return bySubjects(subjectv, currentPage);
+								 return bySubjects(model, subjectv, currentPage);
+								 
 							 }
 							 
 						     @GetMapping("/{subjectv}-{currentPage}-tutor")
 							 @ResponseBody
-							 public ModelAndView bySubjectsPagination(@PathVariable String subjectv, @PathVariable int currentPage ) {
+							 public String bySubjectsPagination(Model model, @PathVariable String subjectv, @PathVariable int currentPage ) {
 								 
 						    	 System.out.println("Subject : " + subjectv);
 						    	 System.out.println("Page Number : " + currentPage);
-						    	 return bySubjects(subjectv, currentPage);
+						    	 return bySubjects(model, subjectv, currentPage);
 								 
 							 } 
 							     
 						     
 						     /*Update the function*/
 							 @GetMapping("/bySubjects")
-							 public ModelAndView bySubjects(@PathVariable String subjectv, int currentPage) {
+							 public String bySubjects(Model model, @PathVariable String subjectv, int currentPage) {
 
 							    	String search = "s"+subjectv;
 							    	
@@ -2400,33 +2401,34 @@ public class PgController {
 							    	
 							    	System.out.println("we here");
 						
-							        Page<Tutor> page = tutorService.paginateTutorsBySubject(subjectv, currentPage);
+							    	List<Tutor> tutors = tutorService.getAllTutors();
+							        Page<Tutor> page = tutorService.paginateTutorsBySubject(tutors,subjectv, currentPage);
 									
 							        System.out.println("Tutors found");
 							        
-								     long totalPages = page.getTotalPages();
+							
+								     int totalPages = page.getTotalPages();
 								     long totalItems = page.getTotalElements();
-								     List<Tutor> subjects = page.getContent();
 								     
-								     System.out.println("Tutors By Subject");
-								     System.out.println("Total pages " + totalPages);
-								     System.out.println("Total items " + totalItems);
-							        
+									 long pageStart = Math.max(currentPage - 2, 1); // 
+									 long pageEnd = Math.min(currentPage + 3, totalPages); 
 								     
-								  // Create a ModelAndView object
-								     ModelAndView modelAndView = new ModelAndView();
+								     List<Tutor> countries = page.getContent(); 
 
-								     // Add attributes to the model
-								     modelAndView.addObject("currentPage", currentPage);
-								     modelAndView.addObject("totalPages", totalPages);
-								     modelAndView.addObject("totalItems", totalItems);
-								     modelAndView.addObject("subjects", subjects);
-								     modelAndView.addObject("location", subjectv);
-
-								     modelAndView.setViewName("tutorsBySubject.jsp"); 
-
+								     model.addAttribute("user", countries);
+								     model.addAttribute("tutors", countries);
+								     
+								     model.addAttribute("totalPages", totalPages);
+								     model.addAttribute("totalItems", totalItems);
+								     
+								     model.addAttribute("pageStart", pageStart);
+								     model.addAttribute("pageEnd", pageEnd);
+								     
+								     model.addAttribute("currentPage", currentPage);
+								     
 								     // Return the ModelAndView object
-								     return modelAndView;
+								     return "index";
+							        
 							        
 							    }
 							 
